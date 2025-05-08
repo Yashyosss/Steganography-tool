@@ -1,0 +1,105 @@
+1. Introduction
+Steganography is the practice of concealing information within other non-secret data. This project implements an Image-Based Steganography Tool designed to hide and extract messages within image files while maintaining their visual integrity. The tool leverages the Least Significant Bit (LSB) method to manipulate pixel data subtly, ensuring the hidden message remains invisible to the human eye.
+The purpose of this tool is to provide a Windows-compatible solution for secure message transmission while offering a user-friendly graphical interface for both embedding and detecting hidden messages. This report outlines the technical implementation, methodologies, and future directions of the Steganography Tool.
+2. System Overview
+The Steganography Tool consists of a GUI-based application built using Python. Users can embed messages within images and extract hidden messages using simple file selection options. The system maintains a record of previous operations via a log panel and supports light/dark themes for better user experience.
+System Components:
+•	Message Embedding Module: Encodes secret messages into images.
+•	Message Detection Module: Decodes and retrieves hidden messages from images.
+•	GUI Interface: Provides an interactive, user-friendly environment with modern themes.
+•	History Log: Records past operations and message details.
+•	Status Bar: Displays success or error messages during operations.
+System Architecture:
+1.	User Input Layer: Users select images and provide messages for embedding.
+2.	Processing Layer: Applies the LSB algorithm for embedding or extracting data.
+3.	Output Layer: Displays hidden messages or produces a steganographic image.
+3. Implementation Details
+3.1 Least Significant Bit (LSB) Algorithm
+The LSB algorithm is a widely-used steganography method where the least significant bit of each pixel is altered to store message data.
+Embedding Process:
+1.	Convert the input message into binary format.
+2.	Loop through the image pixels and replace the last bit of each pixel component (R, G, B) with message bits.
+3.	Append a delimiter to mark the end of the hidden message.
+4.	Save the modified image without changing its original dimensions.
+Detection Process:
+1.	Loop through the image and extract the least significant bits.
+2.	Assemble the bits into binary form and convert them back to text.
+3.	Identify and display the hidden message using the delimiter.
+3.2 Graphical User Interface (GUI)
+Built using the customtkinter library, the GUI provides a modern, user-friendly interface. Key components include:
+1.	Dashboard: Access to embedding, detection, and logs.
+2.	Tabs: Navigate between functions (Embed, Detect, Logs, Help, Theme).
+3.	Status Bar: Displays operation outcomes and alerts.
+4.	Image Preview: Shows selected images before processing.
+4. Workflow
+4.1 Embedding a Message
+1.	Select an image file (PNG, JPG, BMP).
+2.	Enter the secret message.
+3.	Click "Embed" to hide the message.
+4.	Save the new steganographic image while keeping the original intact.
+5.	Check logs for details.
+4.2 Detecting a Message
+1.	Select an image suspected of containing a hidden message.
+2.	Click "Detect" to extract and display the hidden message.
+3.	View the extracted message on the output panel.
+4.3 Managing Logs
+1.	Every operation (embed/detect) is recorded.
+2.	Users can track previous messages and image usage.
+4.4 Theme Customization
+1.	Switch between Light Mode and Dark Mode.
+2.	Use the Theme Tab to toggle between the options.
+5. Features in Depth
+1.	Message Embedding: Hide custom messages in image files.
+2.	Message Detection: Retrieve hidden messages accurately.
+3.	Image Preview: Display the uploaded image for better visualization.
+4.	Logs & History: Maintain a record of previous operations.
+5.	Custom Themes: Light and dark modes for improved aesthetics.
+6.	Error Handling: Displays errors for unsupported formats or process failures.
+7.	Image Quality Control: Ensure no visual degradation during embedding.
+8.	Help Tab: Provides usage instructions and guidelines.
+6. Technologies and Requirements
+6.1 Programming Language:
+•	Python (Version 3.11 or later)
+6.2 Libraries and Frameworks:
+•	customtkinter: GUI design with modern styling.
+•	Pillow: Image processing and manipulation.
+•	os: File handling and directory management.
+•	tkinter: Basic user interface components.
+6.3 Operating System:
+•	Windows 10 or later (optimized for Windows environments).
+6.4 Installation Instructions:
+Ensure Python and required libraries are installed:
+pip install customtkinter Pillow
+7. Testing and Validation
+7.1 Functionality Tests:
+•	Image Compatibility: Tested with PNG, JPEG, and BMP formats.
+•	Message Detection: Accurate extraction without character corruption.
+•	GUI Responsiveness: Seamless transitions and efficient status reporting.
+7.2 Error Handling:
+•	Unsupported file format alerts.
+•	Embedded message length validation.
+•	Empty message prevention during embedding.
+7.3 Quality Assurance:
+•	Verified image integrity before and after embedding.
+•	Log maintenance for accurate record-keeping.
+8. Results and Output
+8.1 Embedding Example
+Input:
+•	Image: input.png
+•	Message: "Hello, World!"
+Output:
+•	Steganographic Image: output_stego.png
+8.2 Detection Example
+Input:
+•	Image: output_stego.png
+Output:
+•	Message: "Hello, World!"
+9. Future Scope
+1.	Encryption Integration: Enhance message security using advanced encryption.
+2.	Multi-File Support: Extend steganography to video and audio formats.
+3.	Steganalysis Resistance: Implement anti-detection mechanisms.
+4.	Cloud Integration: Enable cloud storage and message sharing.
+5.	Mobile Application: Develop Android and iOS-compatible versions.
+10. Conclusion
+The Steganography Tool successfully implements LSB-based image steganography with an interactive GUI. It allows users to securely hide and extract messages while maintaining image quality. With its advanced features, including logs, themes, and error handling, the tool is both robust and user-friendly.
+This project lays a foundation for future innovations in steganography and secure data transmission.
